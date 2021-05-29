@@ -1,28 +1,25 @@
 package worderaser
 
 import (
-	"math/rand"
 	"strings"
 )
 
-// █
+const (
+	substitude = "█"
+)
 
 func EraseWord(str string) string {
-	str = strings.Repeat("█", len(str))
+	str = strings.Repeat(substitude, len(str))
 	return str
 }
 
-func EraseRandomWordsByLevel(line []string, level uint) []string {
-	var chance uint
+func EraseWordsByLevel(line []string, level uint) []string {
 	var res []string = line
-	lineLen := uint(len(res))
-	if level > lineLen {
-		chance = uint(lineLen)
+	if level >= uint(len(line)) {
+		level = uint(len(line))
 	}
-	chance = lineLen / level
-	for i := 0; uint(i) < chance; i++ {
-		wordIndex := rand.Intn(int(lineLen))
-		res[wordIndex] = EraseWord(strings.TrimSpace(res[wordIndex]))
+	for i := 0; uint(i) < level; i++ {
+		res[i] = EraseWord(strings.TrimSpace(res[i]))
 	}
 	return line
 }

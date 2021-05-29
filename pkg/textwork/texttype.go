@@ -13,13 +13,18 @@ type Text struct {
 	textLines     [][]string
 }
 
-func New(source string) *Text {
-	return &Text{
+func New(source string) (*Text, error) {
+	text := &Text{
 		SourceText:    source,
 		currentLineId: 0,
 		currentWordId: 0,
 		textLines:     make([][]string, 1),
 	}
+	err := text.SliceSourceText()
+	if err != nil {
+		return nil, errors.New("Error while slicing source text!")
+	}
+	return text, nil
 }
 
 func (t *Text) SetText(text string) {
