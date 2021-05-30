@@ -8,11 +8,13 @@ const (
 	substitude = "█"
 )
 
+// Replace String to substitude string
 func EraseWord(str string) string {
 	str = strings.Repeat(substitude, len(str))
 	return str
 }
 
+// Blurs words by level(count words)
 func EraseWordsByLevel(line []string, level uint) []string {
 	var res []string = line
 	if level >= uint(len(line)) {

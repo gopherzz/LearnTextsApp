@@ -8,13 +8,13 @@ import (
 )
 
 func TestEraseWordsByLevel(t *testing.T) {
-	test.Assert([]string{"Hello", "█████"}, worderaser.EraseWordsByLevel([]string{"Hello", "World"}, 1))
-	test.Assert([]string{"Hello World", "██████"}, worderaser.EraseWordsByLevel([]string{"Hello World", "Worlds"}, 1))
-	test.Assert([]string{"Hello", "█████", "!"}, worderaser.EraseWordsByLevel([]string{"Hello", "World", "!"}, 1))
+	test.AssertEqual([]string{"█████", "World"}, worderaser.EraseWordsByLevel([]string{"Hello", "World"}, 1))
+	test.AssertEqual([]string{"███████████", "Worlds"}, worderaser.EraseWordsByLevel([]string{"Hello World", "Worlds"}, 1))
+	test.AssertEqual([]string{"█████", "█████", "!"}, worderaser.EraseWordsByLevel([]string{"Hello", "World", "!"}, 2))
 }
 
 func TestEraseWord(t *testing.T) {
-	test.Assert("█████", worderaser.EraseWord("hello"))
-	test.Assert("███████████", worderaser.EraseWord("hello world"))
-	test.Assert("█", worderaser.EraseWord("!"))
+	test.AssertEqual("█████", worderaser.EraseWord("hello"))
+	test.AssertEqual("███████████", worderaser.EraseWord("hello world"))
+	test.AssertEqual("█", worderaser.EraseWord("!"))
 }
